@@ -1,3 +1,5 @@
+package multithreading;
+
 class TicketBooking implements Runnable {
     int ticketsAvailable = 1;
 

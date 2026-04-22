@@ -1,29 +1,38 @@
 package citi;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 public class Student {
     private String name;
+    private int id ;
+    private Department dept ;  // Associated 1 : N
     private int mark;
 
-    public Student(String name , int mark){
+    public Student(String name, int id, Department dept, int mark){
         this.name=name;
+        this.id=id;
+        this.dept=dept;
         this.mark=mark;
-    }
-
-    public static  void main(String[] args){
-        Student s1 = new Student("lakshman", 99);
-        Student s2 = new Student("gokul", 50);
-
-        List<Student> Students = Arrays.asList(s1,s2);
-
-        // printing student name who's mark is >75
-        System.out.println("######### Student with mark >75 #############");
-        Students.stream().filter(x->x.mark>75).toList().forEach(s->System.out.println(s.name));
-
+        dept.addStudent(this); // bidirectional consistency
 
     }
+    public int  getId(){
+        return this.id;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public String getDeptName(){
+        return this.dept.getName();
+    }
+    public int getMark(){
+        return this.mark;
+    }
+
+    @Override
+    public String toString() {
+        return this.name+":"+this.id;
+    }
+
+
 }
